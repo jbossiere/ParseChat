@@ -11,6 +11,7 @@ import Parse
 
 class ChatViewController: UIViewController {
 
+    @IBOutlet weak var chatTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +23,20 @@ class ChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onSend(_ sender: Any) {
+        var message = PFObject(className: "Message")
+        message["text"] = chatTextField.text
+        message.saveInBackground { (success: Bool, error: Error?) in
+            if (success) {
+                print("Message successfully saved! 👌👌👌")
+            } else {
+                let sendAlertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let OKAction = UIAlertAction(title: "OK", style: .default)
+                sendAlertController.addAction(OKAction)
+                self.present(sendAlertController, animated: true)
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
