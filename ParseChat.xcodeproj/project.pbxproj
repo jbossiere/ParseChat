@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6895F61E52BC7800800FF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6895F51E52BC7800800FF4 /* LoginViewController.swift */; };
+		2D6895F91E52C8E100800FF4 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6895F81E52C8E100800FF4 /* ChatViewController.swift */; };
 		2DC588B91E52B746001FBCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC588B81E52B746001FBCE1 /* AppDelegate.swift */; };
-		2DC588BB1E52B746001FBCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC588BA1E52B746001FBCE1 /* ViewController.swift */; };
 		2DC588BE1E52B746001FBCE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC588BC1E52B746001FBCE1 /* Main.storyboard */; };
 		2DC588C01E52B746001FBCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC588BF1E52B746001FBCE1 /* Assets.xcassets */; };
 		2DC588C31E52B746001FBCE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC588C11E52B746001FBCE1 /* LaunchScreen.storyboard */; };
@@ -37,9 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D6895F51E52BC7800800FF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2D6895F81E52C8E100800FF4 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		2DC588B51E52B746001FBCE1 /* ParseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DC588B81E52B746001FBCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2DC588BA1E52B746001FBCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DC588BD1E52B746001FBCE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DC588BF1E52B746001FBCE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DC588C21E52B746001FBCE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +101,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2D6895F71E52BC8500800FF4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2D6895F51E52BC7800800FF4 /* LoginViewController.swift */,
+				2D6895F81E52C8E100800FF4 /* ChatViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		2DC588AC1E52B746001FBCE1 = {
 			isa = PBXGroup;
 			children = (
@@ -124,11 +135,11 @@
 		2DC588B71E52B746001FBCE1 /* ParseChat */ = {
 			isa = PBXGroup;
 			children = (
+				2D6895F71E52BC8500800FF4 /* View Controllers */,
 				2DC588B81E52B746001FBCE1 /* AppDelegate.swift */,
-				2DC588BA1E52B746001FBCE1 /* ViewController.swift */,
 				2DC588BC1E52B746001FBCE1 /* Main.storyboard */,
-				2DC588BF1E52B746001FBCE1 /* Assets.xcassets */,
 				2DC588C11E52B746001FBCE1 /* LaunchScreen.storyboard */,
+				2DC588BF1E52B746001FBCE1 /* Assets.xcassets */,
 				2DC588C41E52B746001FBCE1 /* Info.plist */,
 			);
 			path = ParseChat;
@@ -446,7 +457,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DC588BB1E52B746001FBCE1 /* ViewController.swift in Sources */,
+				2D6895F61E52BC7800800FF4 /* LoginViewController.swift in Sources */,
+				2D6895F91E52C8E100800FF4 /* ChatViewController.swift in Sources */,
 				2DC588B91E52B746001FBCE1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -698,6 +710,7 @@
 				2DC588DF1E52B746001FBCE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2DC588E01E52B746001FBCE1 /* Build configuration list for PBXNativeTarget "ParseChatTests" */ = {
 			isa = XCConfigurationList;
@@ -706,6 +719,7 @@
 				2DC588E21E52B746001FBCE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2DC588E31E52B746001FBCE1 /* Build configuration list for PBXNativeTarget "ParseChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -714,6 +728,7 @@
 				2DC588E51E52B746001FBCE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
