@@ -37,6 +37,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func onSend(_ sender: Any) {
         let message = PFObject(className: "Message")
         message["text"] = chatTextField.text
+        message["user"] = PFUser.current()
         message.saveInBackground { (success: Bool, error: Error?) in
             if (success) {
                 print("Message successfully saved! 👌👌👌")
@@ -47,12 +48,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.present(sendAlertController, animated: true)
             }
         }
+        chatTextField.text = ""
     }
     
     func onTimer() {
         var query = PFQuery(className: "Message")
         query.order(byDescending: "createdAt")
         query.includeKey("text")
+        query.includeKey("user")
         query.findObjectsInBackground { (messages: [PFObject]?, error: Error?) in
             if let messages = messages {
                 self.messages = messages
@@ -75,7 +78,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
         let returnedObject = messages?[indexPath.row]
         let message = returnedObject?["text"]
-        
+        var user = returnedObject?["user"]
+        if let user = user {
+            cell.usernameLabel.text = "\((user as AnyObject).username!!):"
+        } else {
+            cell.usernameLabel.text = ""
+        }
         cell.messageBodyLabel.text = "\(message!)"
         
         return cell
