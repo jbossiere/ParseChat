@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
@@ -22,7 +23,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        alertController = UIAlertController(title: "Email and Password Required", message: "Please enter an email address and password", preferredStyle: .alert)
+        
+        
+        alertController = UIAlertController(title: "Username, Email and Password Required", message: "Please enter a username, email address and password", preferredStyle: .alert)
         OKAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(OKAction)
         
@@ -36,11 +39,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLogin(_ sender: Any) {
-        if (emailTextField.text == "" || passwordTextField.text == "") {
+        if (usernameTextField.text == "" || emailTextField.text == "" || passwordTextField.text == "") {
             present(alertController, animated: true)
             
         } else {
-            PFUser.logInWithUsername(inBackground: emailTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: Error?) in
+            PFUser.logInWithUsername(inBackground: usernameTextField.text!, password: passwordTextField.text!) { (user: PFUser?, error: Error?) in
                 if user != nil {
                     print("user logged in")
                     self.performSegue(withIdentifier: "loginSegue", sender: nil)
@@ -55,11 +58,11 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func onSignUp(_ sender: Any) {
-        if (emailTextField.text == "" || passwordTextField.text == "") {
+        if (usernameTextField.text == "" || emailTextField.text == "" || passwordTextField.text == "") {
             present(alertController, animated: true)
         } else {
-            var user = PFUser()
-            user.username = emailTextField.text
+            let user = PFUser()
+            user.username = usernameTextField.text
             user.email = emailTextField.text
             user.password = passwordTextField.text
             

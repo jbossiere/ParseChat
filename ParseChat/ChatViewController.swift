@@ -9,11 +9,22 @@
 import UIKit
 import Parse
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var chatTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var messages: [PFObject]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 120
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: "onTimer", userInfo: nil, repeats: true)
 
         // Do any additional setup after loading the view.
     }
@@ -24,7 +35,7 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func onSend(_ sender: Any) {
-        var message = PFObject(className: "Message")
+        let message = PFObject(className: "Message")
         message["text"] = chatTextField.text
         message.saveInBackground { (success: Bool, error: Error?) in
             if (success) {
@@ -36,6 +47,38 @@ class ChatViewController: UIViewController {
                 self.present(sendAlertController, animated: true)
             }
         }
+    }
+    
+    func onTimer() {
+        var query = PFQuery(className: "Message")
+        query.order(byDescending: "createdAt")
+        query.includeKey("text")
+        query.findObjectsInBackground { (messages: [PFObject]?, error: Error?) in
+            if let messages = messages {
+                self.messages = messages
+            } else {
+                print("error: \(error?.localizedDescription)")
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if messages != nil {
+            return messages!.count
+        } else {
+            return 0
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
+        let returnedObject = messages?[indexPath.row]
+        let message = returnedObject?["text"]
+        
+        cell.messageBodyLabel.text = "\(message!)"
+        
+        return cell
     }
 
     /*
