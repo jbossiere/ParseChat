@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    // Using Kesong Xie's suggested code from this discussion board post: https://discussions.codepath.com/courses/ios_university/questions/parse-data-could-not-be-read-because-it-is-not-in-the-right-format-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Parse.initialize(
